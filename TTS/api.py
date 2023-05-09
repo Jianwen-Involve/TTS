@@ -450,7 +450,7 @@ class TTS:
 
 
     def load_tts_model_by_path(
-        self, model_path: str, speakers_file_path: str, config_path: str, vocoder_path: str = None, vocoder_config: str = None, gpu: bool = False
+        self, model_path: str, config_path: str,  speakers_file_path: str, vocoder_path: str = None, vocoder_config: str = None, gpu: bool = False
     ):
         """Load a model from a path.
 
