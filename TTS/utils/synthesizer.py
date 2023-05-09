@@ -255,6 +255,12 @@ class Synthesizer(object):
             # handle Neon models with single speaker.
             if len(self.tts_model.speaker_manager.name_to_id) == 1:
                 speaker_id = list(self.tts_model.speaker_manager.name_to_id.values())[0]
+            if self.tts_config.use_d_vector_file:
+                # get the average speaker embedding from the saved d_vectors.
+                speaker_embedding = self.tts_model.speaker_manager.get_mean_embedding(
+                    speaker_name, num_samples=None, randomize=False
+                )
+                speaker_embedding = np.array(speaker_embedding)[None, :]  # [1 x embedding_dim]
 
             elif speaker_name and isinstance(speaker_name, str):
                 if self.tts_config.use_d_vector_file:
